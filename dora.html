@@ -12,86 +12,66 @@
         <h1>Learn And Color</h1>
     </div>
     <div id="containerDivId" class="container">
-        <div class="leftdiv"  id="leftDivId">
+        <div class="leftdiv" id="leftDivId">
 			<fieldset>
-            <label id="numberALabelId" for="numberAId">A:</label>
-            <input type="name" maxlength="5" size="4" id="numberAId" placeholder="A"/>
-            <br/>
-         	<label id="operatorLabelId" for="operatorId">Operator:</label> 
-            <select
-				type="text" id="operatorId" style="width:128px;">
-				<option>+</option>
-				<option>-</option>
-				<option>x</option>
-				<option>&divide</option>
-                <option>%</option>
-			</select>
-            <br/>
-            <label id="numberBLabelId" for="numberBId">B:</label>
-            <input type="name" maxlength="5" size="4" id="numberBId" placeholder="B"/>
+				<label id="numberALabelId" for="numberAId">A:</label>
+				<input type="name" maxlength="5" size="4" id="numberAId" placeholder="A"/>
+				<br/>
+				<label id="operatorLabelId" for="operatorId">Operator:</label> 
+				<select
+				type="text" id="operatorId">
+					<option>+</option>
+					<option>-</option>
+					<option>x</option>
+					<option>&divide </option>
+					<option>%</option>
+				</select>
+				<br/>
+				<label id="numberBLabelId" for="numberBId">B:</label>
+				<input type="name" maxlength="5" size="4" id="numberBId" placeholder="B"/>
 			</fieldset>
 			<fieldset>
-            <button id="doneId">Add To Image</button>
-            <br/>
-            <button id="hideId">Hide Inputs</button>
-            <br/>
-            <button id="configurationId">Advanced</button>
+				<button id="hideId">Hide Inputs</button>
+				<br/>
+				<button id="configurationId">Advanced</button>
 			</fieldset>
 			<fieldset>
-            <button id="showOtherImagesId">Other Images</button>
-            <br/>
-            <button id="prefillImageId">Prefill Image</button>
-            <br/>
-            <input id="image_from_list" name="image_from_list" type="text" maxlength="5" size="4" value="none"  />
-            <br/>
-            <img src="images/butterfly.jpg" class="thumbNail"/> 
-            <br/>
-            <img src="images/puppy.gif" class="thumbNail"/> 
-            <br/>
-            <img src="images/teddyBear.jpg" class="thumbNail"/> 
-            <img src="images/dora.gif" class="thumbNail"/> 
-            <br/>
+				<h4 id="imageList"> Other Images </h4>
+				<img src="images/butterfly.jpg" class="thumbNail"/> 
+				<br/>
+				<img src="images/puppy.gif" class="thumbNail"/> 
+				<br/>
+				<img src="images/teddyBear.jpg" class="thumbNail"/> 
+				<img src="images/dora.gif" class="thumbNail"/> 
+				<br/>
 			</fieldset>
 		</div>
-    <!--http://stackoverflow.com/questions/12886286/addeventlistener-for-keydown-on-canvas
-    Added tab index, to make canvas focusable. Unlike other html elements, it is NOT
-    focusable by default.
-    -->
 
-    <!--<canvas id="myCanvas" width="1000" height="1000" style="border:1px solid #d3d3d3;" tabindex="1" 
-    onclick="mouseMoveHandler(this,event)">
-        Your browser does not support the HTML5 canvas tag.
-    </canvas>-->
+		<div id="wrapper">
+     		<img id="bkImage" src="images/dora.gif" />
+			<!-- tabindex makes an element focusable and mentions the order to go when tab is pressed -->
+			<!-- Do not move the width and height to css. It messes up the writing on canvas. Find out why-->
+			<canvas id="myCanvas" width=1000 height=1000 tabindex="1">
+				Your browser does not support the HTML5 canvas tag.
+			</canvas>
+		</div>
 
-    <div id="wrapper">
-        <!--
-        http://stackoverflow.com/questions/18431332/delete-only-text-but-not-the-image-using-canvas
-        http://jsfiddle.net/m1erickson/fg5sV/
-        INFO: both canvas and image overlap.Only the text goes on to the canvas.
-        -->
-        <img id="bkImage" src="images/dora.gif"
-         width=1000 height=1000></canvas>
-        <canvas id="myCanvas" width=1000 height=1000 tabindex="1">
-        Your browser does not support the HTML5 canvas tag.
-        </canvas>
-    </div>
-
-    <div class="rightdiv" id="rightDivId">
-        <fieldset class="fieldSet1">
-            <label id="contentCoordinateGroupLabelId" for="contentCoordinateGroupId" >Add/Edit #:</label>
-            <div id="editMessageDivId"></div>
-            <input class="form-control" type="hidden" id="contentCoordinateGroupId" size="4" placeholder="-1 or 1,2"/>
-            <br/>
-            <label for="xId">X:</label>
-            <input class="form-control" type="name" id="xId" size="4" placeholder="X"/>
-            <br/>
-            <label for="yId">Y:</label>
-            <input class="form-control" type="name" id="yId" size="4" placeholder="Y"/>
-            <br/>
-            <label for="fontSizeId">Font Size:</label>
-            <input class="form-control" type="name" id="fontSizeId" size="4" value="40"/>
-        </fieldset>    
-    </div>
+		<div class="rightdiv" id="rightDivId">
+			<fieldset class="fieldSet1">
+				<label id="contentCoordinateGroupLabelId" for="contentCoordinateGroupId" >Add/Edit #:</label>
+				<div id="editMessageDivId"></div>
+				<input class="form-control" type="hidden" id="contentCoordinateGroupId" size="4" placeholder="-1 or 1,2"/>
+				<br/>
+				<label for="xId">X:</label>
+				<input class="form-control" type="name" id="xId" size="4" placeholder="X"/>
+				<br/>
+				<label for="yId">Y:</label>
+				<input class="form-control" type="name" id="yId" size="4" placeholder="Y"/>
+				<br/>
+				<label for="fontSizeId">Font Size:</label>
+				<input class="form-control" type="name" id="fontSizeId" size="4" value="40"/>
+			</fieldset>    
+		</div>
 
     </div>
     
