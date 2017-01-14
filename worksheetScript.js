@@ -48,27 +48,42 @@ $(function() {
 	
 	function writeOnCanvas(event) {
 		
+		var clickedAt = findCoordinate(event);
+		
 		var numberA = $('#numberAId').val();
 		var numberB = $('#numberBId').val();  
 		var operator = $('#operatorId').val();
-		
-		var rect = canvas.getBoundingClientRect();	
-		console.log("The bounding rectangle coordinates are L: " + rect.left 
-			+ ", R: " + rect.right + ", T: " +rect.top +  ", B: " + rect.bottom);
-        var x = Math.round(event.clientX - rect.left);
-        var y = Math.round(event.clientY - rect.top);
-		console.log("The mouse click coordinates calculated according to canvas is " + x + " and " + y);
-
-		var clickedAt = new Coordinate(x,y);
+		var myFontSize = $('#fontSizeId').val();
 		
         var context = canvas.getContext("2d");
-        context.font = "30pt Calibri";
+        context.font = myFontSize + "pt Calibri";
         context.textAlign="right";
         context.fillText(numberA, clickedAt.x, clickedAt.y);
-		context.fillText(numberB, clickedAt.x, clickedAt.y+30);
-		context.fillText("-----", clickedAt.x, clickedAt.y+50);
-		context.fillText("-----", clickedAt.x, clickedAt.y+75);
-		context.fillText(operator,clickedAt.x+30, clickedAt.y+15);	
+		context.fillText(numberB, clickedAt.x, clickedAt.y+Number(myFontSize));
+		context.fillText("-----", clickedAt.x, clickedAt.y+(myFontSize*1.5));
+		context.fillText("-----", clickedAt.x, clickedAt.y+(myFontSize*2.5));
+		context.fillText(operator,clickedAt.x+Number(myFontSize), clickedAt.y+Number(myFontSize/2));	
+	}
+	
+	function findCoordinate(event) {
+		
+		/* Get the rectangle coordinates of the canvas*/
+		var rect = canvas.getBoundingClientRect();
+		
+		console.log("Bounding rectangle coordinates are L: " + rect.left 
+			+ ", R: " + rect.right + ", T: " +rect.top +  ", B: " + rect.bottom);
+		
+		/* 
+		   clientX and clientY will return coordinates wrt to the top of the page and not wrt the canvas.
+		   Calculate the x,y coordinates of the mouse click event wrt the canvas.
+		*/	
+        var x = Math.round(event.clientX - rect.left);
+        var y = Math.round(event.clientY - rect.top);
+		
+		console.log("Mouse click coordinates: (" + x + ", " + y + ")");
+		
+		return new Coordinate(x,y);		
+		
 	}
 
 
