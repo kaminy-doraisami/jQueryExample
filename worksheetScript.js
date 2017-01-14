@@ -54,33 +54,29 @@ $(function() {
 		var numberB = $('#numberBId').val();  
 		var operator = $('#operatorId').val();
 		var myFontSize = $('#fontSizeId').val();
-		var line = getLine(numberA, numberB);
 		
-		var maxLength = Math.max(numberA.length,numberB.length);
+		var lengthOfLongerNum = Math.max(numberA.length,numberB.length);
+		var line = getLine(lengthOfLongerNum);
+		
 		var delta = Math.abs(numberA.length-numberB.length);
-		var zeroPadding = "";
-		for (i=0; i<delta; i++) {
-			zeroPadding = zeroPadding + "0";
-		}
-		console.log("Padding is " + zeroPadding.length);
+		var zeroPadding = getZeroPadding(delta);
+		
         var context = canvas.getContext("2d");
         context.font = myFontSize + "pt Calibri";
         context.textAlign="left";
 		
 		if (numberA.length > numberB.length) {
 			context.fillText(numberA, clickedAt.x, clickedAt.y);
-			console.log("<>" + zeroPadding+numberB + "<>");
+			console.log("Padding B with zeroes <>" + zeroPadding+numberB + "<>");
 			context.fillText(zeroPadding+numberB, clickedAt.x, clickedAt.y+Number(myFontSize));		
 		} else {
+			console.log("Padding A with zeroes <>" + zeroPadding+numberA + "<>");
 			context.fillText(zeroPadding+numberA, clickedAt.x, clickedAt.y);
-			console.log("<>" + zeroPadding+numberA + "<>");
 			context.fillText(numberB, clickedAt.x, clickedAt.y+Number(myFontSize));					
 		}
-    //  context.fillText(zeroPadding+numberA, clickedAt.x, clickedAt.y);
-	//	context.fillText(zeroPadding+numberB, clickedAt.x, clickedAt.y+Number(myFontSize));
 		context.fillText(line, clickedAt.x, clickedAt.y+(myFontSize*1.25));
 		context.fillText(line, clickedAt.x, clickedAt.y+(myFontSize*2.5));
-		context.fillText(operator,clickedAt.x+(maxLength*Number(myFontSize/1.5)), clickedAt.y+Number(myFontSize/2));	
+		context.fillText(operator,clickedAt.x+(lengthOfLongerNum*Number(myFontSize/1.5)), clickedAt.y+Number(myFontSize/2));	
 	}
 	
 	function findCoordinate(event) {
@@ -104,16 +100,24 @@ $(function() {
 		
 	}
 	
-	function getLine(numberA, numberB) {
+	function getLine(lengthOfLine) {
 		
-		console.log("numberA and numberB received by getLine() are " + numberA + " and " + numberB);
 		var line = "";
-		var lineLength = Math.max(numberA.length,numberB.length);
-		for (i=0; i < lineLength; i++) {
+		for (i=0; i < lengthOfLine; i++) {
 			line = line + "_";
 		};
 		return line;
 			
+	}
+	
+	function getZeroPadding(lengthOfPadding) {
+		
+		var zeroPadding = "";
+		for (i=0; i < lengthOfPadding; i++) {
+			zeroPadding = zeroPadding + "0";
+		}
+		console.log("Padding is " + zeroPadding.length);
+		return zeroPadding;
 	}
 
 
