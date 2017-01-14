@@ -54,15 +54,33 @@ $(function() {
 		var numberB = $('#numberBId').val();  
 		var operator = $('#operatorId').val();
 		var myFontSize = $('#fontSizeId').val();
+		var line = getLine(numberA, numberB);
 		
+		var maxLength = Math.max(numberA.length,numberB.length);
+		var delta = Math.abs(numberA.length-numberB.length);
+		var zeroPadding = "";
+		for (i=0; i<delta; i++) {
+			zeroPadding = zeroPadding + "0";
+		}
+		console.log("Padding is " + zeroPadding.length);
         var context = canvas.getContext("2d");
         context.font = myFontSize + "pt Calibri";
-        context.textAlign="right";
-        context.fillText(numberA, clickedAt.x, clickedAt.y);
-		context.fillText(numberB, clickedAt.x, clickedAt.y+Number(myFontSize));
-		context.fillText("-----", clickedAt.x, clickedAt.y+(myFontSize*1.5));
-		context.fillText("-----", clickedAt.x, clickedAt.y+(myFontSize*2.5));
-		context.fillText(operator,clickedAt.x+Number(myFontSize), clickedAt.y+Number(myFontSize/2));	
+        context.textAlign="left";
+		
+		if (numberA.length > numberB.length) {
+			context.fillText(numberA, clickedAt.x, clickedAt.y);
+			console.log("<>" + zeroPadding+numberB + "<>");
+			context.fillText(zeroPadding+numberB, clickedAt.x, clickedAt.y+Number(myFontSize));		
+		} else {
+			context.fillText(zeroPadding+numberA, clickedAt.x, clickedAt.y);
+			console.log("<>" + zeroPadding+numberA + "<>");
+			context.fillText(numberB, clickedAt.x, clickedAt.y+Number(myFontSize));					
+		}
+    //  context.fillText(zeroPadding+numberA, clickedAt.x, clickedAt.y);
+	//	context.fillText(zeroPadding+numberB, clickedAt.x, clickedAt.y+Number(myFontSize));
+		context.fillText(line, clickedAt.x, clickedAt.y+(myFontSize*1.25));
+		context.fillText(line, clickedAt.x, clickedAt.y+(myFontSize*2.5));
+		context.fillText(operator,clickedAt.x+(maxLength*Number(myFontSize/1.5)), clickedAt.y+Number(myFontSize/2));	
 	}
 	
 	function findCoordinate(event) {
@@ -84,6 +102,18 @@ $(function() {
 		
 		return new Coordinate(x,y);		
 		
+	}
+	
+	function getLine(numberA, numberB) {
+		
+		console.log("numberA and numberB received by getLine() are " + numberA + " and " + numberB);
+		var line = "";
+		var lineLength = Math.max(numberA.length,numberB.length);
+		for (i=0; i < lineLength; i++) {
+			line = line + "_";
+		};
+		return line;
+			
 	}
 
 
