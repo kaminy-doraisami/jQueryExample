@@ -33,14 +33,30 @@ $(function() {
 	function validateAndWrite(event) {
 		
 		var numberA = $('#numberAId').val();
+		var numberB = $('#numberBId').val();    
+		
+		if (numberA === "" && numberB === "") {
+			alert("Numbers are blank. Please enter numbers and click on the image");
+			return false;
+		}
+		
+		if (numberA === "") {
+			alert("Number A is blank. Please enter a number.");
+			return false;
+		} 
+		
+		if(numberB === "") {
+			alert("Number B is blank. Please enter a number");
+			return false;
+		}
+
 		//TODO: explain the regex.
+		/* Test if numbers are numeric */
 		if (/\D/.test(numberA)) {
 			alert(numberA + " is not a number. Please enter a valid number for A." );
 			$('#numberAId').focus() ;
 			return false; 
 		}
-		
-		var numberB = $('#numberBId').val();    
 	 
 		if (/\D/.test(numberB)) {
 			alert(numberB + " is not a number. Please enter a valid number for B." );
