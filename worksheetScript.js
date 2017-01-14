@@ -24,6 +24,12 @@ $(function() {
 		
 	});
 	
+	$('#hideId').click(function(){
+        $("#leftDivId").hide();
+        $("#rightDivId").hide();       
+        $("#bannerDivId").width(1000);             
+	});
+	
 	function validateAndWrite(event) {
 		
 		var numberA = $('#numberAId').val();
