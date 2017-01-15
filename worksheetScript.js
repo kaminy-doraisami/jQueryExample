@@ -141,6 +141,10 @@ $(function() {
 		console.log("Padding is " + zeroPadding.length);
 		return zeroPadding;
 	}
+	
+	$('.thumbNail').click(function(){
+		$('#bkImage').attr("src", $(this).attr("src"));
+	});
 
 
 });
