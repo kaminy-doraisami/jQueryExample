@@ -48,7 +48,9 @@
 	.thumbNail{
 		width: 100x;
 		height: 100px;
-		border: 0;
+		border-width: 1px;
+		border-style: solid;
+		border-color: black; 
 	}
     /**
     http://stackoverflow.com/questions/12710799/two-fieldsets-with-display-inline-aligning-on-bottom
