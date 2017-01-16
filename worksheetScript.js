@@ -6,6 +6,9 @@ $(function() {
 	alert("this works");
    
 	var canvas = $('#myCanvas').get(0);	
+	canvas.setAttribute('width', '1000');
+	canvas.setAttribute('height','1000');
+	
 	function Coordinate (x,y) {
 		this.x = Math.round(x);
 		this.y = Math.round(y);
